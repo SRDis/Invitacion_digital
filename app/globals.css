@@ -5,9 +5,16 @@
   --foreground: #171717;
 }
 
-@theme inline {
+@theme {
+  /* Colores */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  /* Fuentes: Esto crea automáticamente las clases font-display y font-script */
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
+  
+  /* Fuentes por defecto de Next.js si las usas */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -19,8 +26,36 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Estilos base para el body */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    /* Tailwind v4 ya maneja fuentes base, pero si quieres forzar una: */
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes drawBorder {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.rotate-x-180 {
+  transform: rotateX(180deg);
 }
